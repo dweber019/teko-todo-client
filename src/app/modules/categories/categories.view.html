@@ -1,0 +1,17 @@
+<md-content layout-padding>
+  <div ng-if="vm.taskListsPromise.isPending()" layout="row" layout-sm="column" layout-align="space-around">
+    <md-progress-circular md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+  </div>
+
+  <md-card ng-if="vm.taskListsPromise.isFulfilled()"
+           class="teko-reset-padding"
+           ng-repeat="category in vm.categories | filter: { attributes: { name: vm.getSearchValue() } }"
+           >
+    <div class="teko-card-categories-color" style="background-color: {{ category.attributes.color }};"></div>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">{{ category.attributes.name }}</span>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card>
+</md-content>

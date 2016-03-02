@@ -1,0 +1,38 @@
+<md-bottom-sheet class="md-list md-has-header" ng-cloak>
+  <md-subheader>Task Actions</md-subheader>
+  <md-list>
+    <md-list-item>
+      <md-button
+          ng-click="vm.clickItem('open')"
+          class="md-list-item-content" >
+        <md-icon class="material-icons">open_in_new</md-icon>
+        <span class="md-inline-list-icon-label">Öffnen</span>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button
+          ng-click="vm.clickItem('favorit')"
+          class="md-list-item-content" >
+        <md-icon class="material-icons">favorite</md-icon>
+        <span ng-if="vm.task.attributes.favorite" class="md-inline-list-icon-label">Un favorit</span>
+        <span ng-if="!vm.task.attributes.favorite" class="md-inline-list-icon-label">Favorit</span>
+      </md-button>
+    </md-list-item>
+    <md-list-item ng-if="!vm.isTaskClosed()">
+      <md-button
+          ng-click="vm.clickItem('done')"
+          class="md-list-item-content" >
+        <md-icon class="material-icons">check</md-icon>
+        <span class="md-inline-list-icon-label">Erledigt</span>
+      </md-button>
+    </md-list-item>
+    <md-list-item ng-if="!vm.isTaskArchived()">
+      <md-button
+          ng-click="vm.clickItem('archive')"
+          class="md-list-item-content" >
+        <md-icon class="material-icons">archive</md-icon>
+        <span class="md-inline-list-icon-label">Archivieren</span>
+      </md-button>
+    </md-list-item>
+  </md-list>
+</md-bottom-sheet>

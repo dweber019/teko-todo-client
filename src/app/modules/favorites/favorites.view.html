@@ -1,0 +1,24 @@
+<md-content>
+  <div ng-if="vm.tasksPromise.isPending()" layout="row" layout-sm="column" layout-align="space-around">
+    <md-progress-circular md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+  </div>
+
+  <md-card ng-if="vm.tasksPromise.isFulfilled()"
+           ng-repeat="task in vm.getTasks() | filter: { attributes: { name: vm.getSearchValue() } }"
+           ui-sref="root.taskDetail({ id: task.attributes.id })"
+           md-swipe-left="vm.taskSwipLeft(task)"
+           md-swipe-right="vm.taskSwipRight(task)"
+           class="teko-cursor-pointer">
+    <md-card-header>
+      <md-card-avatar>
+        <md-icon ng-if="!task.attributes.favorite" class="md-avatar-icon material-icons">check</md-icon>
+        <md-icon ng-if="!!task.attributes.favorite" class="md-avatar-icon material-icons">favorite</md-icon>
+      </md-card-avatar>
+      <md-card-header-text flex class="teko-truncate">
+        <span class="md-title teko-truncate">{{ task.attributes.name }}</span>
+        <span class="md-subhead">{{ task.attributes.dueDate.format('DD.MM.YYYY HH:mm:ss') }} | {{ 'COMMON.TASK.STATUS.' + task.attributes.status.toUpperCase() | translate }}</span>
+      </md-card-header-text>
+      <teko-task-action-sheet task="task" reload="vm.loadTasks"></teko-task-action-sheet>
+    </md-card-header>
+  </md-card>
+</md-content>

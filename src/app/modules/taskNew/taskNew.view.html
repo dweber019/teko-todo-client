@@ -1,0 +1,88 @@
+<md-content layout-padding>
+  <md-card>
+    <md-card-content>
+
+      <form name="newTaskForm" ng-disabled="vm.submitOp.isPending()">
+
+        <md-input-container class="md-block" flex>
+          <label>Name</label>
+          <input name="taskName"
+                 ng-model="vm.task.attributes.name"
+                 md-autofocus
+                 required>
+          <div ng-messages="newTaskForm.taskName.$error">
+            <div ng-message="required">Dieses Feld ist pflicht.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex>
+          <label>Beschreibung</label>
+          <textarea ng-model="vm.task.attributes.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Status</label>
+          <md-select ng-model="vm.task.attributes.status" class="teko-reset-margin">
+            <md-option value="open">Offen</md-option>
+            <md-option value="inprocess">In Arbeit</md-option>
+            <md-option value="closed">Erledigt</md-option>
+            <md-option value="archived">Archiviert</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Datum</label>
+          <input type="date" name="date" value ng-model="vm.reminder">
+          <md-icon class="material-icons">date_range</md-icon>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Time</label>
+          <input ng-model="vm.time" type="time">
+          <md-icon class="material-icons">schedule</md-icon>
+        </md-input-container>
+
+        <md-autocomplete
+            md-selected-item="vm.autoTaskListItem"
+            md-search-text="vm.autoTaskListText"
+            md-items="item in vm.autoTaskLists"
+            md-item-text="item.attributes.name"
+            md-min-length="0"
+            placeholder="Wähle eine Kategorie">
+          <md-item-template>
+            <span md-highlight-text="vm.autoTaskListText" md-highlight-flags="^i">{{item.attributes.name}}</span>
+          </md-item-template>
+          <md-not-found>
+            Keine Kategorie "{{vm.autoTaskListText}}" gefunden.
+          </md-not-found>
+        </md-autocomplete>
+
+        <br/>
+
+        <md-autocomplete
+            md-selected-item="vm.autoUserItem"
+            md-search-text="vm.autoUserText"
+            md-items="item in vm.autoUsers"
+            md-item-text="item.attributes.firstName + ' ' + item.attributes.lastName"
+            md-min-length="0"
+            placeholder="Wähle eine Benutzer">
+          <md-item-template>
+            <div layout="row" layout-align="start center">
+              <img class="teko-img-circle teko-img-autocomplete" ng-src="http://www.gravatar.com/avatar/{{ vm.getHashMail(item.attributes.email) }}" />
+              <span flex style="margin-left: 10px;">{{item.attributes.firstName}} {{item.attributes.lastName}}</span>
+            </div>
+          </md-item-template>
+          <md-not-found>
+            Kein Benutzer "{{vm.autoUserText}}" gefunden.
+          </md-not-found>
+        </md-autocomplete>
+
+        <br/>
+
+        <md-button ng-click="vm.saveNew()" ng-disabled="!newTaskForm.$valid" class="md-raised md-primary" style="width: 100%; margin-left: 0px;">Speichern</md-button>
+
+      </form>
+
+    </md-card-content>
+  </md-card>
+</md-content>

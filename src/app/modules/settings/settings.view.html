@@ -1,0 +1,38 @@
+<md-content layout-padding>
+    <form name="loginForm" ng-if="!vm.userLoggedIn()">
+        <md-input-container class="md-block">
+            <label translate="MODULES.SETTINGS.LOGIN_FORM.EMAIL"></label>
+            <input type="email" required name="email" ng-model="vm.userName" ng-disabled="vm.submitOp.isPending()">
+            <div ng-messages="loginForm.email.$error">
+                <div ng-message="required" translate="COMMON.FORM.VALIDATION.REQUIRED"></div>
+                <div ng-message="email" translate="COMMON.FORM.VALIDATION.EMAIL"></div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label translate="MODULES.SETTINGS.LOGIN_FORM.PASSWORD"></label>
+            <input type="password" required name="password" ng-model="vm.password" ng-disabled="vm.submitOp.isPending()">
+            <div ng-messages="loginForm.password.$error">
+                <div ng-message="required" translate="COMMON.FORM.VALIDATION.REQUIRED"></div>
+            </div>
+        </md-input-container>
+        <md-button ng-click="vm.loggin()"
+                   ng-disabled="vm.submitOp.isPending()"
+                   class="md-raised md-primary"
+                   translate="MODULES.SETTINGS.LOGIN_FORM.SUBMIT"
+                   style="width: 100%; margin-left: 0px;"></md-button>
+    </form>
+    <form name="logoutForm" ng-if="vm.userLoggedIn()">
+        <md-card class="teko-card-reset-margin">
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="teko-img-circle" ng-src="http://www.gravatar.com/avatar/{{ vm.getHashMail(vm.currentUser.attributes.email) }}"/>
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{ vm.currentUser.attributes.firstName }} {{ vm.currentUser.attributes.lastName }}</span>
+                    <span class="md-subhead">{{ vm.currentUser.attributes.email }}</span>
+                </md-card-header-text>
+            </md-card-header>
+        </md-card>
+        <md-button ng-click="vm.logout()" class="md-raised md-primary" translate="MODULES.SETTINGS.LOGOUT.BUTTON" style="width: 100%; margin-left: 0px;"></md-button>
+    </form>
+</md-content>

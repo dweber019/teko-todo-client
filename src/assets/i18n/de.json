@@ -1,0 +1,84 @@
+{
+  "COMMON": {
+    "FORM":  {
+      "VALIDATION": {
+        "REQUIRED": "Dieses Feld ist pflicht.",
+        "EMAIL": "Dieses Feld muss eine gültige Email sein."
+      }
+    },
+    "TASK": {
+      "STATUS": {
+        "OPEN": "Offen",
+        "INPROCESS": "In Arbeit",
+        "CLOSED": "Erledigt",
+        "ARCHIVED": "Archiviert"
+      }
+    }
+  },
+  "LAYOUT": {
+    "HEADER": {
+      "TITLE": "MISSING TITLE"
+    },
+    "MENU": {
+      "TITLE": "Menu",
+      "ENTRIES": {
+        "AGENDA": "Agenda",
+        "FAVORITES": "Favoriten",
+        "CAT": "Kategorien",
+        "TASKS": "Aufgaben",
+        "SETTINGS": "Einstellungen",
+        "ARCHIVE": "Archiv"
+      },
+      "MGMT": "Management",
+      "SEARCH": {
+        "PLACEHOLDER": "mit mir kannst du suchen..."
+      }
+    }
+  },
+  "MODULES": {
+    "AGENDA": {
+      "TOOLBAR": {
+        "TITLE": "Agenda"
+      }
+    },
+    "FAVORITES": {
+      "TOOLBAR": {
+        "TITLE": "Favorites"
+      }
+    },
+    "CATEGORIES": {
+      "TOOLBAR": {
+        "TITLE": "Kategorien"
+      }
+    },
+    "TASKS": {
+      "TOOLBAR": {
+        "TITLE": "Aufgaben"
+      }
+    },
+    "SETTINGS": {
+      "TOOLBAR": {
+        "TITLE": "Einstellungen"
+      },
+      "LOGIN_FORM": {
+        "EMAIL": "Email",
+        "PASSWORD": "Passwort",
+        "SUBMIT": "Login"
+      },
+      "LOGOUT": {
+        "TEXT": "",
+        "BUTTON": "Logout"
+      }
+    },
+    "ARCHIV": {
+      "TOOLBAR": {
+        "TITLE": "Archiv"
+      }
+    },
+    "TASK_DETAIL": {
+      "TOOLBAR": {
+        "TITLE": "Aufgabe"
+      }
+    }
+  }
+}

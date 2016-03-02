@@ -1,0 +1,81 @@
+<md-sidenav layout="column" class="md-sidenav-left" md-component-id="layout.navigation">
+    <md-toolbar class="md-theme-light teko-main-toolbar md-toolbar-tools">
+        <h2 class="md-toolbar-tools" translate="LAYOUT.MENU.TITLE"></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Close" ng-click="vm.toggleSidebar()">
+            <md-icon class="material-icons">close</md-icon>
+        </md-button>
+    </md-toolbar>
+    <md-list>
+        <md-list-item ng-click="vm.navigateTo('root.agenda')">
+            <md-icon class="material-icons">event note</md-icon>
+            <p translate="LAYOUT.MENU.ENTRIES.AGENDA"></p>
+        </md-list-item>
+        <md-list-item ng-click="vm.navigateTo('root.favorites')">
+            <md-icon class="material-icons">favorite</md-icon>
+            <p translate="LAYOUT.MENU.ENTRIES.FAVORITES"></p>
+        </md-list-item>
+        <md-list-item ng-click="vm.navigateTo('root.categories')">
+            <md-icon class="material-icons">label</md-icon>
+            <p translate="LAYOUT.MENU.ENTRIES.CAT"></p>
+        </md-list-item>
+        <md-list-item ng-click="vm.navigateTo('root.tasks')">
+            <md-icon class="material-icons">list</md-icon>
+            <p translate="LAYOUT.MENU.ENTRIES.TASKS"></p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader class="teko-menu-subheader" translate="LAYOUT.MENU.MGMT"></md-subheader>
+        <md-list-item ng-click="vm.navigateTo('root.archiv')">
+            <md-icon class="material-icons">archive</md-icon>
+            <p translate="LAYOUT.MENU.ENTRIES.ARCHIVE"></p>
+        </md-list-item>
+        <md-list-item ng-click="vm.navigateTo('root.settings')">
+            <md-icon class="material-icons">settings</md-icon>
+            <p translate="LAYOUT.MENU.ENTRIES.SETTINGS"></p>
+        </md-list-item>
+    </md-list>
+</md-sidenav>
+
+<div layout="column" role="main" flex>
+
+    <!-- Main Toolbar -->
+    <md-toolbar layout="row" class="teko-main-toolbar md-toolbar-tools" ng-show="!vm.showSearch">
+        <md-button ng-if="!vm.showBackButton()" class="md-icon-button" aria-label="Menu" ng-click="vm.toggleSidebar()">
+            <md-icon class="material-icons">menu</md-icon>
+        </md-button>
+        <md-button ng-if="vm.showBackButton()" class="md-icon-button" aria-label="Back" ng-click="vm.goBack()">
+            <md-icon class="material-icons">arrow_back</md-icon>
+        </md-button>
+        <h2>
+            <span translate="{{ vm.getToolbarTitle() }}"></span>
+        </h2>
+        <span flex></span>
+        <md-button ng-if="vm.dontShowSearchButton()" class="md-icon-button" aria-label="Close" ng-click="vm.showSearch = true">
+            <md-icon class="material-icons">search</md-icon>
+        </md-button>
+    </md-toolbar>
+
+    <!-- Search Toolbar -->
+    <md-toolbar layout="row" class="teko-main-toolbar md-toolbar-tools md-accent" ng-show="vm.showSearch">
+        <md-button class="md-icon-button" aria-label="Menu" ng-click="vm.closeSearch()">
+            <md-icon class="material-icons">close</md-icon>
+        </md-button>
+        <md-input-container class="teko-search-toolbar-input" md-theme="input" flex>
+            <label>&nbsp;</label>
+            <input ng-model="vm.search" ng-change="vm.searchChanged()" placeholder="{{ 'LAYOUT.MENU.SEARCH.PLACEHOLDER' | translate }}" autofocus>
+        </md-input-container>
+        <md-button aria-label="Search" ng-click="" md-no-ink>
+            <md-icon class="material-icons">search</md-icon>
+        </md-button>
+    </md-toolbar>
+
+    <md-button ng-if="vm.dnotShowAddButton()"
+               class="md-fab md-fab-bottom-right"
+               aria-label="Add"
+               ui-sref="root.taskNew()">
+        <ng-md-icon class="material-icons">add</ng-md-icon>
+    </md-button>
+
+    <md-content ui-view></md-content>
+
+</div>

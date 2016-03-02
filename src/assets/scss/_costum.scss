@@ -1,0 +1,105 @@
+/**
+ * Common
+ */
+.teko-reset-padding {
+  padding: 0;
+}
+
+.teko-reset-margin {
+  margin: 0;
+}
+
+.md-fab {
+  display: flex;
+  justify-content: center;
+}
+
+.teko-reset-subheader-padding {
+  .md-subheader-inner {
+    padding-left: 0;
+  }
+}
+
+.teko-cursor-pointer {
+  cursor: pointer;
+}
+
+.teko-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/**
+ * Main Toolbar
+ */
+.teko-main-toolbar {
+  height: 56px;
+  max-height: 56px;
+  min-height: 56px;
+}
+/**
+ * Menu customs
+ */
+.teko-menu-subheader {
+  padding: 16px 0 16px 16px;
+}
+
+.teko-search-toolbar-input {
+  margin: 0;
+
+  &.md-input-focused {
+    input {
+      border-color: #FFF !important;
+    }
+  }
+
+  input {
+    border-color: #FFF;
+    color: #FFF;
+  }
+
+  input::-webkit-input-placeholder {
+    color: #FFF;
+  }
+
+  input::-moz-placeholder {
+    color: #FFF;
+  }
+  /* firefox 19+ */
+  input:-ms-input-placeholder {
+    color: #FFF;
+  }
+  /* ie */
+  input:-moz-placeholder {
+    color: #FFF;
+  }
+}
+/**
+ * Card customs
+ */
+.teko-card-reset-margin {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.teko-card-categories-color {
+  min-height: 40px;
+  min-width: 100%;
+}
+/**
+ * Image styles
+ */
+.teko-img-circle {
+  border-radius: 50%;
+}
+
+.teko-img-autocomplete {
+  height: 40px;
+  width: 40px;
+}
+/**
+ * md-input changes
+ */
+md-input-container .md-errors-spacer {
+  min-height: 0;
+}
