@@ -2,7 +2,6 @@ import {ITitleService, injectName as TitleServiceInject} from './../../common/se
 import TaskModel, {ITaskModel, ITaskModelStatus} from './../../models/task.model.ts';
 import UserModel, {IUserModel} from './../../models/user.model.ts';
 import TaskListModel, {ITaskListModel} from './../../models/taskList.model.ts';
-import moment = require('moment');
 
 export interface ITaskDetialsStateParams extends ng.ui.IStateParamsService {
   id: number;

@@ -16,7 +16,9 @@ export interface IUserModel extends IAbstractModel {
 
 class UserModel extends AbstractModel {
 
+  /* tslint:disable:no-unused-variable */
   private static rootUrl = 'users';
+  /* tslint:enable:no-unused-variable */
 
   constructor(attrs?: IModelAttributes) {
     super(UserModel, attrs);

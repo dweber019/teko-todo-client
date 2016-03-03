@@ -37,7 +37,7 @@ module.exports = function makeWebpackConfig(options) {
     config.entry = {}
   } else {
     config.entry = {
-      app: './src/app/app.ts'
+      app: './src/app/bootstrap.ts'
     };
   }
 

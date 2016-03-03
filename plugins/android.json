@@ -18,6 +18,9 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "ch.teko.todo_client"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "ch.teko.todo_client"
         }
     },
     "dependent_plugins": {}

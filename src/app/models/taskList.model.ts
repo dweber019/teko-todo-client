@@ -15,7 +15,9 @@ export interface ITaskListModel extends IAbstractModel {
 
 class TaskListModel extends AbstractModel {
 
+  /* tslint:disable:no-unused-variable */
   private static rootUrl = 'tasklists';
+  /* tslint:enable:no-unused-variable */
 
   constructor(attrs?: IModelAttributes) {
     super(TaskListModel, attrs);

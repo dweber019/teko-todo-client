@@ -3,7 +3,7 @@ module.exports = function (env, pkg) {
     case 'dev':
       return buildConfig('http://teko-todo-api.dev/api');
     case 'prod':
-      return buildConfig('http://dweber019.internet-box.ch/api');
+      return buildConfig('https://teko-todo-backend.w3tec.ch/api');
   }
 
   function buildConfig(apiUrl) {

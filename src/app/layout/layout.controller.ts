@@ -67,6 +67,8 @@ export class LayoutController {
     this.toolbarSearch.setSearch('');
   };
 
+  public goNewTask = () => this.$state.go('root.taskNew', { state: this.$state.current.name });
+
 }
 
 export var namespace: string = 'app.layout';

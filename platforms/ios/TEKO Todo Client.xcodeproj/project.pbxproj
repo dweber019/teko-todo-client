@@ -44,6 +44,8 @@
 		8055D017B23C4BF592125975 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C49ECBEF74E14F118373CCAB /* CDVStatusBar.m */; };
 		B788A2F3038C499F82566771 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F02E47ED184211A7CC65D3 /* IonicKeyboard.m */; };
 		DF5327BDECAD4202A628ED0A /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F22CB037294E99B515FA00 /* UIWebViewExtension.m */; };
+		6826C62F85EB4FCD8E3CB858 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF0DC87758B4C3A91D3B4C3 /* DatePicker.m */; };
+		BE72364155234657A98A3267 /* DatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FAA16BEA84FD9A3D817D9 /* DatePicker.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,9 @@
 		C2F22CB037294E99B515FA00 /* UIWebViewExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIWebViewExtension.m"; path = "ionic-plugin-keyboard/UIWebViewExtension.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		2AD4DFEE12D74A69A1703CAD /* IonicKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		CCF647DD2F304EABB02D951E /* UIWebViewExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIWebViewExtension.h"; path = "ionic-plugin-keyboard/UIWebViewExtension.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		BFF0DC87758B4C3A91D3B4C3 /* DatePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "DatePicker.m"; path = "cordova-plugin-datepicker/DatePicker.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		AD0B9B2B50DA4D8EA43DDAEF /* DatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DatePicker.h"; path = "cordova-plugin-datepicker/DatePicker.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		4C9FAA16BEA84FD9A3D817D9 /* DatePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "DatePicker.xib"; path = "DatePicker.xib"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +196,7 @@
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* TEKO Todo Client-Info.plist */,
+				4C9FAA16BEA84FD9A3D817D9 /* DatePicker.xib */,
 			);
 			name = Resources;
 			path = "TEKO Todo Client/Resources";
@@ -227,6 +233,8 @@
 				C2F22CB037294E99B515FA00 /* UIWebViewExtension.m */,
 				2AD4DFEE12D74A69A1703CAD /* IonicKeyboard.h */,
 				CCF647DD2F304EABB02D951E /* UIWebViewExtension.h */,
+				BFF0DC87758B4C3A91D3B4C3 /* DatePicker.m */,
+				AD0B9B2B50DA4D8EA43DDAEF /* DatePicker.h */,
 			);
 			name = Plugins;
 			path = "TEKO Todo Client/Plugins";
@@ -380,6 +388,7 @@
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
+				BE72364155234657A98A3267 /* DatePicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +425,7 @@
 				8055D017B23C4BF592125975 /* CDVStatusBar.m in Sources */,
 				B788A2F3038C499F82566771 /* IonicKeyboard.m in Sources */,
 				DF5327BDECAD4202A628ED0A /* UIWebViewExtension.m in Sources */,
+				6826C62F85EB4FCD8E3CB858 /* DatePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

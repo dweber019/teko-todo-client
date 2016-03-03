@@ -17,6 +17,9 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="DatePickerPlugin">
+        <param name="android-package" value="com.plugin.datepicker.DatePickerPlugin" />
+    </feature>
     <icon density="ldpi" src="res/android/icon/mdpi_launcher.png" />
     <icon density="mdpi" src="res/android/icon/mdpi_launcher.png" />
     <icon density="hdpi" src="res/android/icon/hdpi_launcher.png" />

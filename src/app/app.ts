@@ -7,7 +7,6 @@ import '../assets/scss/main.scss';
  */
 import 'angular';
 import 'angular-ui-router';
-import 'ionic-sdk/release/js/ionic.bundle.js';
 import 'ng-cordova';
 import 'angular-translate';
 import 'angular-translate-loader-static-files';
@@ -26,7 +25,6 @@ angular
 
     // Third-Party Libs
     'ui.router',
-    'ionic',
     'ngCordova',
     'pascalprecht.translate',
     'LocalStorageModule',
@@ -34,6 +32,7 @@ angular
     'angular-jwt',
     'angular-toArrayFilter',
     'ngMessages',
+    'ngCordova',
 
     // Configs, middleware, run...
     require('./core/config/config.ts').namespace,

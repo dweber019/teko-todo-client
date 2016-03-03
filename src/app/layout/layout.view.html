@@ -72,7 +72,7 @@
     <md-button ng-if="vm.dnotShowAddButton()"
                class="md-fab md-fab-bottom-right"
                aria-label="Add"
-               ui-sref="root.taskNew()">
+               ng-click="vm.goNewTask()">
         <ng-md-icon class="material-icons">add</ng-md-icon>
     </md-button>
 

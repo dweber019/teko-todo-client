@@ -6,7 +6,10 @@ let routing = ($stateProvider: ng.ui.IStateProvider) => {
       url: '/tasks/new/empty',
       template: require('./taskNew.view.html'),
       controller: TaskNewControllerName,
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      params: {
+        state: undefined
+      }
     })
     .state('root.taskEdit', {
       url: '/tasks/edit/{id}',

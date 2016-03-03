@@ -5,6 +5,14 @@
         "REQUIRED": "Dieses Feld ist pflicht.",
         "EMAIL": "Dieses Feld muss eine gültige Email sein."
       }
+    },
+    "TASK": {
+      "STATUS": {
+        "OPEN": "Offen",
+        "INPROCESS": "In Arbeit",
+        "CLOSED": "Erledigt",
+        "ARCHIVED": "Archiviert"
+      }
     }
   },
   "LAYOUT": {

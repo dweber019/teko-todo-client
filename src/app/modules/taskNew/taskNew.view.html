@@ -17,7 +17,7 @@
 
         <md-input-container class="md-block" flex>
           <label>Beschreibung</label>
-          <textarea ng-model="vm.task.attributes.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+          <textarea ng-model="vm.task.attributes.description" md-maxlength="150" maxlength="150"></textarea>
         </md-input-container>
 
         <md-input-container class="md-block">
@@ -32,14 +32,14 @@
 
         <md-input-container class="md-icon-float md-block">
           <label>Datum</label>
-          <input type="date" name="date" value ng-model="vm.reminder">
-          <md-icon class="material-icons">date_range</md-icon>
+          <input type="date" ng-model="vm.reminder" ng-disabled="true">
+          <md-icon class="material-icons" ng-click="vm.openDatePicker()">date_range</md-icon>
         </md-input-container>
 
         <md-input-container class="md-icon-float md-block">
           <label>Time</label>
-          <input ng-model="vm.time" type="time">
-          <md-icon class="material-icons">schedule</md-icon>
+          <input ng-model="vm.time" type="time" ng-disabled="true">
+          <md-icon class="material-icons" ng-click="vm.openTimePicker()">schedule</md-icon>
         </md-input-container>
 
         <md-autocomplete
