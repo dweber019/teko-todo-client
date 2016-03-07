@@ -89468,6 +89468,7 @@
 	            _this.showSearch = false;
 	            _this.toolbarSearch.setSearch('');
 	        };
+	        this.goNewTask = function () { return _this.$state.go('root.taskNew', { state: _this.$state.current.name }); };
 	        console.info('LayoutController');
 	        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, error) {
 	            if (_this.backButtonStates.indexOf(toState.name) >= 0) {
@@ -89529,7 +89530,7 @@
 /* 149 */
 /***/ function(module, exports) {
 
-	module.exports = "<md-sidenav layout=\"column\" class=\"md-sidenav-left\" md-component-id=\"layout.navigation\">\n    <md-toolbar class=\"md-theme-light teko-main-toolbar md-toolbar-tools\">\n        <h2 class=\"md-toolbar-tools\" translate=\"LAYOUT.MENU.TITLE\"></h2>\n        <span flex></span>\n        <md-button class=\"md-icon-button\" aria-label=\"Close\" ng-click=\"vm.toggleSidebar()\">\n            <md-icon class=\"material-icons\">close</md-icon>\n        </md-button>\n    </md-toolbar>\n    <md-list>\n        <md-list-item ng-click=\"vm.navigateTo('root.agenda')\">\n            <md-icon class=\"material-icons\">event note</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.AGENDA\"></p>\n        </md-list-item>\n        <md-list-item ng-click=\"vm.navigateTo('root.favorites')\">\n            <md-icon class=\"material-icons\">favorite</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.FAVORITES\"></p>\n        </md-list-item>\n        <md-list-item ng-click=\"vm.navigateTo('root.categories')\">\n            <md-icon class=\"material-icons\">label</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.CAT\"></p>\n        </md-list-item>\n        <md-list-item ng-click=\"vm.navigateTo('root.tasks')\">\n            <md-icon class=\"material-icons\">list</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.TASKS\"></p>\n        </md-list-item>\n        <md-divider></md-divider>\n        <md-subheader class=\"teko-menu-subheader\" translate=\"LAYOUT.MENU.MGMT\"></md-subheader>\n        <md-list-item ng-click=\"vm.navigateTo('root.archiv')\">\n            <md-icon class=\"material-icons\">archive</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.ARCHIVE\"></p>\n        </md-list-item>\n        <md-list-item ng-click=\"vm.navigateTo('root.settings')\">\n            <md-icon class=\"material-icons\">settings</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.SETTINGS\"></p>\n        </md-list-item>\n    </md-list>\n</md-sidenav>\n\n<div layout=\"column\" role=\"main\" flex>\n\n    <!-- Main Toolbar -->\n    <md-toolbar layout=\"row\" class=\"teko-main-toolbar md-toolbar-tools\" ng-show=\"!vm.showSearch\">\n        <md-button ng-if=\"!vm.showBackButton()\" class=\"md-icon-button\" aria-label=\"Menu\" ng-click=\"vm.toggleSidebar()\">\n            <md-icon class=\"material-icons\">menu</md-icon>\n        </md-button>\n        <md-button ng-if=\"vm.showBackButton()\" class=\"md-icon-button\" aria-label=\"Back\" ng-click=\"vm.goBack()\">\n            <md-icon class=\"material-icons\">arrow_back</md-icon>\n        </md-button>\n        <h2>\n            <span translate=\"{{ vm.getToolbarTitle() }}\"></span>\n        </h2>\n        <span flex></span>\n        <md-button ng-if=\"vm.dontShowSearchButton()\" class=\"md-icon-button\" aria-label=\"Close\" ng-click=\"vm.showSearch = true\">\n            <md-icon class=\"material-icons\">search</md-icon>\n        </md-button>\n    </md-toolbar>\n\n    <!-- Search Toolbar -->\n    <md-toolbar layout=\"row\" class=\"teko-main-toolbar md-toolbar-tools md-accent\" ng-show=\"vm.showSearch\">\n        <md-button class=\"md-icon-button\" aria-label=\"Menu\" ng-click=\"vm.closeSearch()\">\n            <md-icon class=\"material-icons\">close</md-icon>\n        </md-button>\n        <md-input-container class=\"teko-search-toolbar-input\" md-theme=\"input\" flex>\n            <label>&nbsp;</label>\n            <input ng-model=\"vm.search\" ng-change=\"vm.searchChanged()\" placeholder=\"{{ 'LAYOUT.MENU.SEARCH.PLACEHOLDER' | translate }}\" autofocus>\n        </md-input-container>\n        <md-button aria-label=\"Search\" ng-click=\"\" md-no-ink>\n            <md-icon class=\"material-icons\">search</md-icon>\n        </md-button>\n    </md-toolbar>\n\n    <md-button ng-if=\"vm.dnotShowAddButton()\"\n               class=\"md-fab md-fab-bottom-right\"\n               aria-label=\"Add\"\n               ui-sref=\"root.taskNew()\">\n        <ng-md-icon class=\"material-icons\">add</ng-md-icon>\n    </md-button>\n\n    <md-content ui-view></md-content>\n\n</div>\n"
+	module.exports = "<md-sidenav layout=\"column\" class=\"md-sidenav-left\" md-component-id=\"layout.navigation\">\n    <md-toolbar class=\"md-theme-light teko-main-toolbar md-toolbar-tools\">\n        <h2 class=\"md-toolbar-tools\" translate=\"LAYOUT.MENU.TITLE\"></h2>\n        <span flex></span>\n        <md-button class=\"md-icon-button\" aria-label=\"Close\" ng-click=\"vm.toggleSidebar()\">\n            <md-icon class=\"material-icons\">close</md-icon>\n        </md-button>\n    </md-toolbar>\n    <md-list>\n        <md-list-item ng-click=\"vm.navigateTo('root.agenda')\">\n            <md-icon class=\"material-icons\">event note</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.AGENDA\"></p>\n        </md-list-item>\n        <md-list-item ng-click=\"vm.navigateTo('root.favorites')\">\n            <md-icon class=\"material-icons\">favorite</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.FAVORITES\"></p>\n        </md-list-item>\n        <md-list-item ng-click=\"vm.navigateTo('root.categories')\">\n            <md-icon class=\"material-icons\">label</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.CAT\"></p>\n        </md-list-item>\n        <md-list-item ng-click=\"vm.navigateTo('root.tasks')\">\n            <md-icon class=\"material-icons\">list</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.TASKS\"></p>\n        </md-list-item>\n        <md-divider></md-divider>\n        <md-subheader class=\"teko-menu-subheader\" translate=\"LAYOUT.MENU.MGMT\"></md-subheader>\n        <md-list-item ng-click=\"vm.navigateTo('root.archiv')\">\n            <md-icon class=\"material-icons\">archive</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.ARCHIVE\"></p>\n        </md-list-item>\n        <md-list-item ng-click=\"vm.navigateTo('root.settings')\">\n            <md-icon class=\"material-icons\">settings</md-icon>\n            <p translate=\"LAYOUT.MENU.ENTRIES.SETTINGS\"></p>\n        </md-list-item>\n    </md-list>\n</md-sidenav>\n\n<div layout=\"column\" role=\"main\" flex>\n\n    <!-- Main Toolbar -->\n    <md-toolbar layout=\"row\" class=\"teko-main-toolbar md-toolbar-tools\" ng-show=\"!vm.showSearch\">\n        <md-button ng-if=\"!vm.showBackButton()\" class=\"md-icon-button\" aria-label=\"Menu\" ng-click=\"vm.toggleSidebar()\">\n            <md-icon class=\"material-icons\">menu</md-icon>\n        </md-button>\n        <md-button ng-if=\"vm.showBackButton()\" class=\"md-icon-button\" aria-label=\"Back\" ng-click=\"vm.goBack()\">\n            <md-icon class=\"material-icons\">arrow_back</md-icon>\n        </md-button>\n        <h2>\n            <span translate=\"{{ vm.getToolbarTitle() }}\"></span>\n        </h2>\n        <span flex></span>\n        <md-button ng-if=\"vm.dontShowSearchButton()\" class=\"md-icon-button\" aria-label=\"Close\" ng-click=\"vm.showSearch = true\">\n            <md-icon class=\"material-icons\">search</md-icon>\n        </md-button>\n    </md-toolbar>\n\n    <!-- Search Toolbar -->\n    <md-toolbar layout=\"row\" class=\"teko-main-toolbar md-toolbar-tools md-accent\" ng-show=\"vm.showSearch\">\n        <md-button class=\"md-icon-button\" aria-label=\"Menu\" ng-click=\"vm.closeSearch()\">\n            <md-icon class=\"material-icons\">close</md-icon>\n        </md-button>\n        <md-input-container class=\"teko-search-toolbar-input\" md-theme=\"input\" flex>\n            <label>&nbsp;</label>\n            <input ng-model=\"vm.search\" ng-change=\"vm.searchChanged()\" placeholder=\"{{ 'LAYOUT.MENU.SEARCH.PLACEHOLDER' | translate }}\" autofocus>\n        </md-input-container>\n        <md-button aria-label=\"Search\" ng-click=\"\" md-no-ink>\n            <md-icon class=\"material-icons\">search</md-icon>\n        </md-button>\n    </md-toolbar>\n\n    <md-button ng-if=\"vm.dnotShowAddButton()\"\n               class=\"md-fab md-fab-bottom-right\"\n               aria-label=\"Add\"\n               ng-click=\"vm.goNewTask()\">\n        <ng-md-icon class=\"material-icons\">add</ng-md-icon>\n    </md-button>\n\n    <md-content ui-view></md-content>\n\n</div>\n"
 
 /***/ },
 /* 150 */
@@ -90817,7 +90818,10 @@
 	        url: '/tasks/new/empty',
 	        template: __webpack_require__(196),
 	        controller: taskNew_controller_ts_1.injectName,
-	        controllerAs: 'vm'
+	        controllerAs: 'vm',
+	        params: {
+	            state: undefined
+	        }
 	    })
 	        .state('root.taskEdit', {
 	        url: '/tasks/edit/{id}',
@@ -90843,11 +90847,12 @@
 	var moment = __webpack_require__(34);
 	var md5 = __webpack_require__(163);
 	var TaskNewController = (function () {
-	    function TaskNewController(titleService, $stateParams, $state, $cordovaDatePicker) {
+	    function TaskNewController(titleService, $stateParams, $state, $cordovaDatePicker, $window) {
 	        var _this = this;
 	        this.$stateParams = $stateParams;
 	        this.$state = $state;
 	        this.$cordovaDatePicker = $cordovaDatePicker;
+	        this.$window = $window;
 	        this.openDatePicker = function () {
 	            var options = {
 	                date: new Date(),
@@ -90908,23 +90913,24 @@
 	        };
 	        this.saveNew = function () {
 	            if (angular.isDefined(_this.autoUserItem)) {
-	                _this.task.attributes.userId = _this.autoUserItem.getId();
+	                _this.task.attributes.userId = _this.autoUserItem && _this.autoUserItem.getId();
 	            }
 	            if (angular.isDefined(_this.autoTaskListItem)) {
-	                _this.task.attributes.tasklistId = _this.autoTaskListItem.getId();
+	                _this.task.attributes.tasklistId = _this.autoTaskListItem && _this.autoTaskListItem.getId();
 	            }
 	            _this.task.attributes.dueDate = (_this.reminder && _this.time) &&
 	                moment(moment(_this.reminder).format('YYYY-MM-DD') + ' ' + moment(_this.time).format('HH:mm:ss')) ||
 	                (_this.reminder && !_this.time) && moment(moment(_this.reminder).format('YYYY-MM-DD')) || undefined;
 	            _this.submitOp = _this.task.save();
-	            _this.submitOp
-	                .then(function (r) { return _this.task.isNew() && _this.$state.go('root.tasks') || _this.$state.go('root.taskDetail', { id: r.getId() }); });
+	            _this.submitOp.then(function (r) {
+	                return _this.task.isNew() && _this.$state.go(_this.$stateParams.state || 'root.tasks') || _this.$window.history.back();
+	            });
 	        };
 	        console.info('TaskNewController');
 	        titleService.setTitle('MODULES.TASK_DETAIL.TOOLBAR.TITLE');
 	        this.loadTask();
 	    }
-	    TaskNewController.$inject = [TitelService_ts_1.injectName, '$stateParams', '$state', '$cordovaDatePicker'];
+	    TaskNewController.$inject = [TitelService_ts_1.injectName, '$stateParams', '$state', '$cordovaDatePicker', '$window'];
 	    return TaskNewController;
 	}());
 	exports.TaskNewController = TaskNewController;

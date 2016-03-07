@@ -1,4 +1,5 @@
-import AbstractModel, {IModelFillAbles, IModelFillAblesTypes, IModelAttributes, IAbstractModel} from './abstract.model.ts';
+import AbstractModel,
+  {IModelFillAbles, IModelFillAblesTypes, IModelAttributes, IAbstractModel, IModelIdentifier} from './abstract.model.ts';
 
 export enum ITaskModelStatus {
   OPEN = <any>'open',
@@ -66,7 +67,7 @@ class TaskModel extends AbstractModel implements ITaskModel {
    * find Entity
    * @param id
    */
-  public static find(id): ng.IPromise<ITaskModel> { return new TaskModel()._find(id); }
+  public static find(id: IModelIdentifier): ng.IPromise<ITaskModel> { return new TaskModel()._find(id); }
 
   /**
    * find all Entities
@@ -77,7 +78,7 @@ class TaskModel extends AbstractModel implements ITaskModel {
    * delete a Entity
    * @param id
    */
-  public static destory(id): ng.IPromise<void> { return new TaskModel()._destory(id); }
+  public static destory(id: IModelIdentifier): ng.IPromise<void> { return new TaskModel()._destory(id); }
 
   /**
    * create an Entity

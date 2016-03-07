@@ -143,7 +143,7 @@ abstract class AbstractModel implements IAbstractModel {
   /**
    * Convert model to http data
    */
-  protected convertToHttpData(attrs: IModelAttributes): IModelAttributes {
+  private convertToHttpData(attrs: IModelAttributes): IModelAttributes {
     let tempHttpData = {};
     Object.keys(this.fillAbles())
       .forEach(key => {
@@ -161,7 +161,7 @@ abstract class AbstractModel implements IAbstractModel {
   /**
    * New model helper
    */
-  protected newModel(data: any): IAbstractModel | IAbstractModel[] {
+  private newModel(data: any): IAbstractModel | IAbstractModel[] {
     return data && Array.isArray(data) && data.map(e => new this.model(e)) ||
     data && Object.keys(data).length > 0 && new this.model(data) ||
     data && Array.isArray(data) && [] ||
@@ -177,7 +177,7 @@ abstract class AbstractModel implements IAbstractModel {
   /**
    * Fill the specific model attributes with the paramter
    */
-  protected fill(attrs: IModelAttributes): IModelAttributes {
+  private fill(attrs: IModelAttributes): IModelAttributes {
     return attrs && Object.keys(this.fillAbles())
       .map(key => angular.isDefined(attrs[key]) && (this.original[key] = this.convertToType(attrs[key], this.fillAbles()[key]))) &&
       this.resetAttributes();
@@ -186,7 +186,7 @@ abstract class AbstractModel implements IAbstractModel {
   /**
    * Empty element
    */
-  protected fillEmpty(): IModelAttributes {
+  private fillEmpty(): IModelAttributes {
     return Object.keys(this.fillAbles()).map(key => this.attributes[key] = undefined);
   }
 
