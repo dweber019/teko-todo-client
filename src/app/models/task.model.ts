@@ -1,6 +1,12 @@
 import AbstractModel,
   {IModelFillAbles, IModelFillAblesTypes, IModelAttributes, IAbstractModel, IModelIdentifier} from './abstract.model.ts';
 
+/**
+ * (description)
+ *
+ * @export
+ * @enum {number}
+ */
 export enum ITaskModelStatus {
   OPEN = <any>'open',
   IN_PROCESS = <any>'inprocess',
@@ -8,6 +14,12 @@ export enum ITaskModelStatus {
   ARCHIVED = <any>'archived'
 };
 
+/**
+ * The Task attributes interface
+ *
+ * @export
+ * @interface ITaskModelAttributes
+ */
 export interface ITaskModelAttributes {
   id: number;
   name: string;
@@ -21,20 +33,51 @@ export interface ITaskModelAttributes {
   updatedAt: moment.Moment;
 }
 
+/**
+ * The Task model
+ *
+ * @export
+ * @interface ITaskModel
+ * @extends {IAbstractModel}
+ */
 export interface ITaskModel extends IAbstractModel {
   attributes: ITaskModelAttributes;
 }
 
+/**
+ * The Task model class
+ *
+ * @class TaskModel
+ * @extends {AbstractModel}
+ * @implements {ITaskModel}
+ */
 class TaskModel extends AbstractModel implements ITaskModel {
 
   /* tslint:disable:no-unused-variable */
+  /**
+   * The base url for this model
+   *
+   * @private
+   * @static
+   */
   private static rootUrl = 'tasks';
   /* tslint:enable:no-unused-variable */
 
+  /**
+   * Creates an instance of TaskModel.
+   *
+   * @param {IModelAttributes} [attrs] (description)
+   */
   constructor(attrs?: IModelAttributes) {
     super(TaskModel, attrs);
   }
 
+  /**
+   * The available attributes for this model
+   *
+   * @protected
+   * @returns {IModelFillAbles} (description)
+   */
   protected fillAbles(): IModelFillAbles {
     return {
       id: IModelFillAblesTypes.NUMBER,

@@ -1,10 +1,22 @@
 import moment = require('moment');
 import {IHttpUtilService} from './../common/utils/HttpService.ts';
 
+/**
+ * The attributes interface
+ *
+ * @export
+ * @interface IModelFillAbles
+ */
 export interface IModelFillAbles {
   [key: string]: IModelFillAblesTypes;
 }
 
+/**
+ * The available types
+ *
+ * @export
+ * @enum {number}
+ */
 export enum IModelFillAblesTypes {
   NUMBER,
   FLOAT,
@@ -18,6 +30,12 @@ export type IModelIdentifier = string | number;
 
 export type IModelAttributes = any;
 
+/**
+ * The Abstract model interface
+ *
+ * @export
+ * @interface IAbstractModel
+ */
 export interface IAbstractModel {
   attributes: IModelAttributes;
   isNew(): boolean;
@@ -29,30 +47,53 @@ export interface IAbstractModel {
   getId(): IModelIdentifier;
 }
 
+/**
+ * The Abstract model
+ *
+ * @abstract
+ * @class AbstractModel
+ * @implements {IAbstractModel}
+ */
 abstract class AbstractModel implements IAbstractModel {
 
   /**
-   * Http Service
+   * HttpService
+   *
+   * @static
+   * @type {IHttpUtilService}
    */
   public static httpService: IHttpUtilService;
 
   /**
-   * Provide the identifier key
+   * Identifier
+   * This can be overwriten by a direved class if needed
+   *
+   * @protected
+   * @type {string}
    */
   protected identifier: string = 'id';
 
   /**
-   * Date format
+   * Default time format which is used in your backend
+   *
+   * @protected
+   * @type {string}
    */
   protected httpDateFormat: string = 'YYYY-MM-DD HH:mm:ss';
 
   /**
-   * Http send identifier
+   * Should we send the identifier within the payload
+   *
+   * @protected
+   * @type {boolean}
    */
   protected httpSendIdentifier: boolean = false;
 
   /**
-   * Http don't sent this data
+   * Which data should we not send to the backend
+   *
+   * @protected
+   * @type {string[]}
    */
   protected httpNotSendData: string[] = [
     'createdAt',
@@ -60,12 +101,17 @@ abstract class AbstractModel implements IAbstractModel {
   ];
 
   /**
-   * original
+   * This holds you attributes from the backend
+   *
+   * @protected
+   * @type {IModelAttributes}
    */
   protected original: IModelAttributes = {};
 
   /**
-   * attributes
+   * This hold the attributes you are action on
+   *
+   * @type {IModelAttributes}
    */
   public attributes: IModelAttributes = {};
 
@@ -79,69 +125,158 @@ abstract class AbstractModel implements IAbstractModel {
   }
 
   /**
-   * Helpers
+   * Tells if the model is new
+   *
+   * @returns {boolean}
    */
   public isNew(): boolean { return !this.getId(); }
 
   /**
-   * Manuipulation queries
+   * Saves the actin model
+   *
+   * @returns {ng.IPromise<IAbstractModel>}
    */
   public save(): ng.IPromise<IAbstractModel> {
     return this.isNew() ?
       this._create(this.convertToHttpData(this.toArray())) : this._update(this.convertToHttpData(this.toArray()));
   }
 
+  /**
+   * Destories the actin model
+   *
+   * @returns {ng.IPromise<void>}
+   */
   public destroy(): ng.IPromise<void> {
     return this._destory(this.original[this.identifier]);
   }
 
   /**
-   * Attribute handling
+   * Resets the attribtes from the original
+   *
+   * @returns {IModelAttributes}
    */
   public resetAttributes(): IModelAttributes { return this.attributes = angular.copy(this.original); }
+
+  /**
+   * Convert the actin model to an array
+   *
+   * @returns {IModelAttributes}
+   */
   public toArray(): IModelAttributes { return this.attributes; }
+
+  /**
+   * You can update multipe attributes at once
+   *
+   * @param {IModelAttributes} list
+   * @returns {IModelAttributes}
+   */
   public bulkUpdateAttrs(list: IModelAttributes): IModelAttributes {
     return Object.keys(list).map(key => this.attributes[key] = list[key]);
   }
+
+  /**
+   * Get the identifier attribute value
+   *
+   * @returns {IModelIdentifier}
+   */
   public getId(): IModelIdentifier { return <IModelIdentifier>this.attributes[this.identifier]; }
 
   /**
-   * Search queries
+   * Find a specific model
+   *
+   * @protected
+   * @param {IModelIdentifier} id
+   * @returns {ng.IPromise<IAbstractModel>}
    */
   protected _find(id: IModelIdentifier): ng.IPromise<IAbstractModel> {
     return AbstractModel.httpService.read(`/${this.model.rootUrl}/${id}`).then(r => this.newModel(r));
   }
 
+  /**
+   * Find all models
+   *
+   * @protected
+   * @returns {ng.IPromise<IAbstractModel[]>}
+   */
   protected _all(): ng.IPromise<IAbstractModel[]> {
     return AbstractModel.httpService.read(`/${this.model.rootUrl}`).then(r => this.newModel(r));
   }
 
+  /**
+   * Find a specific related model from the actin model
+   *
+   * @protected
+   * @param {IModelIdentifier} localId
+   * @param {string} relation
+   * @param {IModelIdentifier} foreignId
+   * @returns {ng.IPromise<IAbstractModel>}
+   */
   protected _findRelation(localId: IModelIdentifier, relation: string, foreignId: IModelIdentifier): ng.IPromise<IAbstractModel> {
     return AbstractModel.httpService.read(`/${this.model.rootUrl}/${localId}/${relation}/${foreignId}`).then(r => this.newModel(r));
   }
 
+  /**
+   * Find all related models form the actin model
+   *
+   * @protected
+   * @param {string} localId
+   * @param {string} relation
+   * @returns {ng.IPromise<IAbstractModel[]>}
+   */
   protected _allRelation(localId: string, relation: string): ng.IPromise<IAbstractModel[]> {
     return AbstractModel.httpService.read(`/${this.model.rootUrl}/${localId}/${relation}`).then(r => this.newModel(r));
   }
 
+  /**
+   * Here is a mighty custom reader
+   *
+   * @protected
+   * @param {string} url
+   * @returns {(ng.IPromise<IAbstractModel | IAbstractModel[]>)}
+   */
   protected _customRead(url: string): ng.IPromise<IAbstractModel | IAbstractModel[]> {
     return AbstractModel.httpService.read(url).then(r => this.newModel(r));
   }
 
+  /**
+   * Destories a model
+   *
+   * @protected
+   * @param {IModelIdentifier} id
+   * @returns {ng.IPromise<void>}
+   */
   protected _destory(id: IModelIdentifier): ng.IPromise<void> {
     return AbstractModel.httpService.destroy(`/${this.model.rootUrl}/${id}`).then(r => void 0);
   }
 
+  /**
+   * Update a model
+   *
+   * @protected
+   * @param {IModelAttributes} data
+   * @returns {ng.IPromise<IAbstractModel>}
+   */
   protected _update(data: IModelAttributes): ng.IPromise<IAbstractModel> {
     return AbstractModel.httpService.update(`/${this.model.rootUrl}/${this.getId()}`, data).then(r => this.newModel(r));
   }
 
+  /**
+   * Create a model
+   *
+   * @protected
+   * @param {IModelAttributes} data
+   * @returns {ng.IPromise<IAbstractModel>}
+   */
   protected _create(data: IModelAttributes): ng.IPromise<IAbstractModel> {
     return AbstractModel.httpService.create(`/${this.model.rootUrl}`, data).then(r => this.newModel(r));
   }
 
   /**
-   * Convert model to http data
+   * Converts attributes to HTTP data
+   *
+   * @private
+   * @param {IModelAttributes} attrs
+   * @returns {IModelAttributes}
    */
   private convertToHttpData(attrs: IModelAttributes): IModelAttributes {
     let tempHttpData = {};
@@ -159,7 +294,11 @@ abstract class AbstractModel implements IAbstractModel {
   };
 
   /**
-   * New model helper
+   * This will create a new model(s) no matter what happens
+   *
+   * @private
+   * @param {*} data
+   * @returns {(IAbstractModel | IAbstractModel[])}
    */
   private newModel(data: any): IAbstractModel | IAbstractModel[] {
     return data && Array.isArray(data) && data.map(e => new this.model(e)) ||
@@ -170,12 +309,20 @@ abstract class AbstractModel implements IAbstractModel {
   }
 
   /**
-   * A list off all accessible model attributes with the data type
+   * You have to define fillAbles, these are your attributes
+   *
+   * @protected
+   * @abstract
+   * @returns {IModelFillAbles}
    */
   protected abstract fillAbles(): IModelFillAbles;
 
   /**
-   * Fill the specific model attributes with the paramter
+   * Fill up your model with attributes
+   *
+   * @private
+   * @param {IModelAttributes} attrs
+   * @returns {IModelAttributes}
    */
   private fill(attrs: IModelAttributes): IModelAttributes {
     return attrs && Object.keys(this.fillAbles())
@@ -184,14 +331,23 @@ abstract class AbstractModel implements IAbstractModel {
   }
 
   /**
-   * Empty element
+   * Create an empty model
+   *
+   * @private
+   * @returns {IModelAttributes}
    */
   private fillEmpty(): IModelAttributes {
     return Object.keys(this.fillAbles()).map(key => this.attributes[key] = undefined);
   }
 
   /**
-   * Convert to type
+   * Convert values to specific types
+   *
+   * @private
+   * @template T
+   * @param {*} value
+   * @param {IModelFillAblesTypes} type
+   * @returns {T}
    */
   private convertToType<T>(value: any, type: IModelFillAblesTypes): T {
     let returnValue;
@@ -218,7 +374,13 @@ abstract class AbstractModel implements IAbstractModel {
   };
 
   /**
-   * Convert to http type
+   * Convert HTTP data to specific attributes
+   *
+   * @private
+   * @template T
+   * @param {*} value (description)
+   * @param {IModelFillAblesTypes} type (description)
+   * @returns {T} (description)
    */
   private convertToHttpType<T>(value: any, type: IModelFillAblesTypes): T {
     let returnValue;
